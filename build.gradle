@@ -13,6 +13,27 @@ allprojects {
 
 }
 
+subprojects {
+  apply plugin: 'maven'
+
+  def nexusUrl = project.hasProperty('nexusUrl') ? nexusUrl : ''
+  def nexusUsername = project.hasProperty('nexusUsername') ? nexusUsername : ''
+  def nexusPassword = project.hasProperty('nexusPassword') ? nexusPassword : ''
+
+  uploadArchives {
+    repositories {
+      mavenDeployer {
+        repository(url: "${nexusUrl}/content/repositories/releases") {
+          authentication(userName: nexusUsername, password: nexusPassword)
+        }
+        snapshotRepository(url: "${nexusUrl}/content/repositories/snapshots") {
+          authentication(userName: nexusUsername, password: nexusPassword)
+        }
+      }
+    }
+  }
+}
+
 buildscript {
   repositories {
     maven {
@@ -24,7 +45,6 @@ buildscript {
   }
 }
 
-apply plugin: 'maven'
 apply plugin: 'net.researchgate.release'
 
 task wrapper(type: Wrapper) {
@@ -36,21 +56,3 @@ release {
   failOnUnversionedFiles = false
   failOnCommitNeeded = false
 }
-
-def nexusUrl = project.hasProperty('nexusUrl') ? nexusUrl : ''
-def nexusUsername = project.hasProperty('nexusUsername') ? nexusUsername : ''
-def nexusPassword = project.hasProperty('nexusPassword') ? nexusPassword : ''
-
-uploadArchives {
-  repositories {
-    mavenDeployer {
-      repository(url: "${nexusUrl}/content/repositories/releases") {
-        authentication(userName: nexusUsername, password: nexusPassword)
-      }
-      snapshotRepository(url: "${nexusUrl}/content/repositories/snapshots") {
-        authentication(userName: nexusUsername, password: nexusPassword)
-      }
-    }
-  }
-}
-
