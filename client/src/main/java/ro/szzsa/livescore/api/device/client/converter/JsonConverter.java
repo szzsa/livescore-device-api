@@ -1,4 +1,4 @@
-package ro.szzsa.livescore.api.device.client.impl.http.converter;
+package ro.szzsa.livescore.api.device.client.converter;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -1,4 +1,4 @@
-package ro.szzsa.livescore.api.device.client.impl.http.connector;
+package ro.szzsa.livescore.api.device.client.connector;
 
 /**
  * Connects the server with the client.

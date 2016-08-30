@@ -1,4 +1,4 @@
-package ro.szzsa.livescore.api.device.client.log;
+package ro.szzsa.livescore.api.device.client.connector.log;
 
 /**
  *
