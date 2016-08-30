@@ -1,6 +1,7 @@
 package ro.szzsa.livescore.api.device.client.impl.http;
 
 import ro.szzsa.livescore.api.device.client.DeviceApiClient;
+import ro.szzsa.livescore.api.device.client.exception.DeviceApiException;
 import ro.szzsa.livescore.api.device.client.handler.GameDetailsUpdateHandler;
 import ro.szzsa.livescore.api.device.client.handler.GamesUpdateHandler;
 import ro.szzsa.livescore.api.device.client.handler.StandingsUpdateHandler;
@@ -34,44 +35,57 @@ public class DeviceApiHttpClient implements DeviceApiClient {
     private Converter converter = new JsonConverter();
 
     @Override
-    public void getGameDetails(String gameId, GameDetailsUpdateHandler gameDetailsHandler) {
-        GameDetailsRequest requestPayload = new GameDetailsRequest();
-        requestPayload.setGameId(gameId);
-        String message = converter.toString(requestPayload);
-        Request request = new Request(DeviceApiEndpoints.GET_GAME_DETAILS.getUrl(), message);
+    public void getGameDetails(String gameId, GameDetailsUpdateHandler gameDetailsHandler) throws DeviceApiException {
+        try {
+            GameDetailsRequest requestPayload = new GameDetailsRequest();
+            requestPayload.setGameId(gameId);
+            String message = converter.toString(requestPayload);
+            Request request = new Request(DeviceApiEndpoints.GET_GAME_DETAILS.getUrl(), message);
 
-        String response = connector.sendRequest(request);
+            String response = connector.sendRequest(request);
 
-        GameDetailsResponse responsePayload = converter.fromString(response, GameDetailsResponse.class);
+            GameDetailsResponse responsePayload = converter.fromString(response, GameDetailsResponse.class);
 
-        gameDetailsHandler.handleGameDetailsUpdate(responsePayload.getGameDetails());
+            gameDetailsHandler.handleGameDetailsUpdate(responsePayload.getGameDetails());
+        } catch (Exception e) {
+            throw new DeviceApiException(e);
+        }
     }
 
     @Override
-    public void getStats(TeamsUpdateHandler teamsHandler, GamesUpdateHandler gamesHandler, StandingsUpdateHandler standingsHandler) {
-        Request request = new Request(DeviceApiEndpoints.SYNC_STATS.getUrl());
+    public void getStats(TeamsUpdateHandler teamsHandler, GamesUpdateHandler gamesHandler, StandingsUpdateHandler standingsHandler)
+        throws DeviceApiException {
+        try {
+            Request request = new Request(DeviceApiEndpoints.SYNC_STATS.getUrl());
 
-        String response = connector.sendRequest(request);
+            String response = connector.sendRequest(request);
 
-        StatsSyncResponse responsePayload = converter.fromString(response, StatsSyncResponse.class);
+            StatsSyncResponse responsePayload = converter.fromString(response, StatsSyncResponse.class);
 
-        teamsHandler.handleTeamsUpdate(responsePayload.getTeams());
-        gamesHandler.handleGamesUpdate(responsePayload.getGames());
-        standingsHandler.handleStandingsUpdate(responsePayload.getStandings());
+            teamsHandler.handleTeamsUpdate(responsePayload.getTeams());
+            gamesHandler.handleGamesUpdate(responsePayload.getGames());
+            standingsHandler.handleStandingsUpdate(responsePayload.getStandings());
+        } catch (Exception e) {
+            throw new DeviceApiException(e);
+        }
     }
 
     @Override
-    public boolean shouldUpdate(int appVersion) {
-        VersionSyncRequest requestPayload = new VersionSyncRequest();
-        requestPayload.setAppVersion(appVersion);
-        String message = converter.toString(requestPayload);
-        Request request = new Request(DeviceApiEndpoints.SYNC_VERSION.getUrl(), message);
+    public boolean shouldUpdate(int appVersion) throws DeviceApiException {
+        try {
+            VersionSyncRequest requestPayload = new VersionSyncRequest();
+            requestPayload.setAppVersion(appVersion);
+            String message = converter.toString(requestPayload);
+            Request request = new Request(DeviceApiEndpoints.SYNC_VERSION.getUrl(), message);
 
-        String response = connector.sendRequest(request);
+            String response = connector.sendRequest(request);
 
-        VersionSyncResponse responsePayload = converter.fromString(response, VersionSyncResponse.class);
+            VersionSyncResponse responsePayload = converter.fromString(response, VersionSyncResponse.class);
 
-        return responsePayload.isUpdateApp();
+            return responsePayload.isUpdateApp();
+        } catch (Exception e) {
+            throw new DeviceApiException(e);
+        }
     }
 
     /**

@@ -3,7 +3,7 @@ package ro.szzsa.livescore.api.device.client.exception;
 /**
  *
  */
-public class DeviceApiException extends RuntimeException {
+public class DeviceApiException extends Exception {
 
     public DeviceApiException() {
     }

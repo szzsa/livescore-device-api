@@ -3,7 +3,7 @@ package ro.szzsa.livescore.api.device.client.impl.http.connector;
 /**
  *
  */
-public class ConnectorException extends RuntimeException {
+public class ConnectorException extends Exception {
 
     public ConnectorException() {
     }
