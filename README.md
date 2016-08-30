@@ -1,0 +1,1 @@
+API between livescore-server and livescore-client
