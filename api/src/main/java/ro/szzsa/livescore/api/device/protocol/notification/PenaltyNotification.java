@@ -23,7 +23,7 @@ public class PenaltyNotification extends Notification {
   @Override
   public String getCollapseKey() {
     return penalty.getGame().getHomeTeam() +
-           penalty.getGame().getVisitorTeam() +
-           String.valueOf(penalty.getGame().getDate());
+      penalty.getGame().getVisitorTeam() +
+      String.valueOf(penalty.getGame().getDate());
   }
 }

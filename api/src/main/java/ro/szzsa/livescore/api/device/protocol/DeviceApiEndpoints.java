@@ -16,7 +16,7 @@ public enum DeviceApiEndpoints {
    *
    * @see StatsSyncResponse
    */
-  SYNC_STATS(Constants.DEVICE_API_ROOT_PATH + "/stats"),
+  SYNC_STATS("/stats"),
 
   /**
    * Endpoint for version synchronization.
@@ -24,7 +24,7 @@ public enum DeviceApiEndpoints {
    * @see VersionSyncRequest
    * @see VersionSyncResponse
    */
-  SYNC_VERSION(Constants.DEVICE_API_ROOT_PATH + "/version"),
+  SYNC_VERSION("/version"),
 
   /**
    * Endpoint for game details retrieval.
@@ -32,20 +32,24 @@ public enum DeviceApiEndpoints {
    * @see GameDetailsRequest
    * @see GameDetailsResponse
    */
-  GET_GAME_DETAILS(Constants.DEVICE_API_ROOT_PATH + "/game");
+  GET_GAME_DETAILS("/game");
 
-  private final String url;
+  private final String path;
 
-  DeviceApiEndpoints(String url) {
-    this.url = url;
+  DeviceApiEndpoints(String path) {
+    this.path = path;
+  }
+
+  public String getPath() {
+    return path;
   }
 
   public String getUrl() {
-    return url;
+    return Constants.DEVICE_API_ROOT_PATH + path;
   }
 
-  private static class Constants {
+  public static class Constants {
 
-    private static final String DEVICE_API_ROOT_PATH = "/api/device/v1";
+    public static final String DEVICE_API_ROOT_PATH = "/api/device/v1";
   }
 }

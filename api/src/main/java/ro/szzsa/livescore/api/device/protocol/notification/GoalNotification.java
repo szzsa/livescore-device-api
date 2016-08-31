@@ -23,7 +23,7 @@ public class GoalNotification extends Notification {
   @Override
   public String getCollapseKey() {
     return goal.getGame().getHomeTeam() +
-           goal.getGame().getVisitorTeam() +
-           String.valueOf(goal.getGame().getDate());
+      goal.getGame().getVisitorTeam() +
+      String.valueOf(goal.getGame().getDate());
   }
 }
