@@ -5,7 +5,7 @@ package ro.szzsa.livescore.api.device.client.converter;
  */
 public interface Converter {
 
-    String toString(Object object);
+  String toString(Object object);
 
-    <T> T fromString(String string, Class<T> type);
+  <T> T fromString(String string, Class<T> type);
 }

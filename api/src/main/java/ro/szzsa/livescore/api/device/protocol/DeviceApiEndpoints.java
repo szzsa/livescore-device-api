@@ -11,41 +11,41 @@ import ro.szzsa.livescore.api.device.protocol.response.VersionSyncResponse;
  */
 public enum DeviceApiEndpoints {
 
-    /**
-     * Endpoint for stats synchronization.
-     *
-     * @see StatsSyncResponse
-     */
-    SYNC_STATS(Constants.DEVICE_API_ROOT_PATH + "/stats"),
+  /**
+   * Endpoint for stats synchronization.
+   *
+   * @see StatsSyncResponse
+   */
+  SYNC_STATS(Constants.DEVICE_API_ROOT_PATH + "/stats"),
 
-    /**
-     * Endpoint for version synchronization.
-     *
-     * @see VersionSyncRequest
-     * @see VersionSyncResponse
-     */
-    SYNC_VERSION(Constants.DEVICE_API_ROOT_PATH + "/version"),
+  /**
+   * Endpoint for version synchronization.
+   *
+   * @see VersionSyncRequest
+   * @see VersionSyncResponse
+   */
+  SYNC_VERSION(Constants.DEVICE_API_ROOT_PATH + "/version"),
 
-    /**
-     * Endpoint for game details retrieval.
-     *
-     * @see GameDetailsRequest
-     * @see GameDetailsResponse
-     */
-    GET_GAME_DETAILS(Constants.DEVICE_API_ROOT_PATH + "/game");
+  /**
+   * Endpoint for game details retrieval.
+   *
+   * @see GameDetailsRequest
+   * @see GameDetailsResponse
+   */
+  GET_GAME_DETAILS(Constants.DEVICE_API_ROOT_PATH + "/game");
 
-    private final String url;
+  private final String url;
 
-    DeviceApiEndpoints(String url) {
-        this.url = url;
-    }
+  DeviceApiEndpoints(String url) {
+    this.url = url;
+  }
 
-    public String getUrl() {
-        return url;
-    }
+  public String getUrl() {
+    return url;
+  }
 
-    private static class Constants {
+  private static class Constants {
 
-        private static final String DEVICE_API_ROOT_PATH = "/api/device/v1";
-    }
+    private static final String DEVICE_API_ROOT_PATH = "/api/device/v1";
+  }
 }

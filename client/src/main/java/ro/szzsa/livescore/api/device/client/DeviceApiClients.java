@@ -5,11 +5,11 @@ package ro.szzsa.livescore.api.device.client;
  */
 public final class DeviceApiClients {
 
-    private DeviceApiClients() {
-        throw new UnsupportedOperationException();
-    }
+  private DeviceApiClients() {
+    throw new UnsupportedOperationException();
+  }
 
-    public static DeviceApiClient createHttpClient() {
-        return new DeviceApiHttpClient();
-    }
+  public static DeviceApiClient createHttpClient() {
+    return new DeviceApiHttpClient();
+  }
 }

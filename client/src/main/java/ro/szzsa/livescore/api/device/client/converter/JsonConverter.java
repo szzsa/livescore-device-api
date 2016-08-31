@@ -8,19 +8,19 @@ import com.google.gson.GsonBuilder;
  */
 public class JsonConverter implements Converter {
 
-    private Gson gson;
+  private Gson gson;
 
-    public JsonConverter() {
-        gson = new GsonBuilder().create();
-    }
+  public JsonConverter() {
+    gson = new GsonBuilder().create();
+  }
 
-    @Override
-    public String toString(Object object) {
-        return gson.toJson(object);
-    }
+  @Override
+  public String toString(Object object) {
+    return gson.toJson(object);
+  }
 
-    @Override
-    public <T> T fromString(String json, Class<T> type) {
-        return gson.fromJson(json, type);
-    }
+  @Override
+  public <T> T fromString(String json, Class<T> type) {
+    return gson.fromJson(json, type);
+  }
 }

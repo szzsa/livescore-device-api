@@ -5,11 +5,11 @@ package ro.szzsa.livescore.api.device.client.converter;
  */
 public final class Converters {
 
-    private Converters() {
-        throw new UnsupportedOperationException();
-    }
+  private Converters() {
+    throw new UnsupportedOperationException();
+  }
 
-    public static Converter createJsonConverter() {
-        return new JsonConverter();
-    }
+  public static Converter createJsonConverter() {
+    return new JsonConverter();
+  }
 }

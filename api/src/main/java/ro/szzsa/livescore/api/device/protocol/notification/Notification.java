@@ -5,17 +5,17 @@ package ro.szzsa.livescore.api.device.protocol.notification;
  */
 public abstract class Notification {
 
-    private final NotificationType type;
+  private final NotificationType type;
 
-    protected Notification(NotificationType type) {
-        this.type = type;
-    }
+  protected Notification(NotificationType type) {
+    this.type = type;
+  }
 
-    public NotificationType getType() {
-        return type;
-    }
+  public NotificationType getType() {
+    return type;
+  }
 
-    public String getCollapseKey() {
-        return null;
-    }
+  public String getCollapseKey() {
+    return null;
+  }
 }

@@ -2,13 +2,13 @@ package ro.szzsa.livescore.api.device.protocol.request;
 
 public class VersionSyncRequest {
 
-    private int appVersion;
+  private int appVersion;
 
-    public int getAppVersion() {
-        return appVersion;
-    }
+  public int getAppVersion() {
+    return appVersion;
+  }
 
-    public void setAppVersion(int appVersion) {
-        this.appVersion = appVersion;
-    }
+  public void setAppVersion(int appVersion) {
+    this.appVersion = appVersion;
+  }
 }

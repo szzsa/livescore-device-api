@@ -2,23 +2,23 @@ package ro.szzsa.livescore.api.device.protocol.notification;
 
 import java.util.List;
 
-import ro.szzsa.livescore.api.device.model.game.Game;
+import ro.szzsa.livescore.model.Game;
 
 import static ro.szzsa.livescore.api.device.protocol.notification.NotificationType.GAME_UPDATE_NOTIFICATION;
 
 public class GameUpdateNotification extends Notification {
 
-    private List<Game> games;
+  private List<Game> games;
 
-    public GameUpdateNotification() {
-        super(GAME_UPDATE_NOTIFICATION);
-    }
+  public GameUpdateNotification() {
+    super(GAME_UPDATE_NOTIFICATION);
+  }
 
-    public List<Game> getGames() {
-        return games;
-    }
+  public List<Game> getGames() {
+    return games;
+  }
 
-    public void setGames(List<Game> games) {
-        this.games = games;
-    }
+  public void setGames(List<Game> games) {
+    this.games = games;
+  }
 }

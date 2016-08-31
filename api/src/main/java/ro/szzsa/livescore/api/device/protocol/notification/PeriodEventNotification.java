@@ -1,50 +1,50 @@
 package ro.szzsa.livescore.api.device.protocol.notification;
 
-import ro.szzsa.livescore.api.device.model.event.PeriodEvent;
-import ro.szzsa.livescore.api.device.model.game.Game;
+import ro.szzsa.livescore.model.Game;
+import ro.szzsa.livescore.model.PeriodEvent;
 
 import static ro.szzsa.livescore.api.device.protocol.notification.NotificationType.PERIOD_EVENT_NOTIFICATION;
 
 public class PeriodEventNotification extends Notification {
 
-    private Game game;
+  private Game game;
 
-    private int period;
+  private int period;
 
-    private PeriodEvent event;
+  private PeriodEvent event;
 
-    public PeriodEventNotification() {
-        super(PERIOD_EVENT_NOTIFICATION);
-    }
+  public PeriodEventNotification() {
+    super(PERIOD_EVENT_NOTIFICATION);
+  }
 
-    public Game getGame() {
-        return game;
-    }
+  public Game getGame() {
+    return game;
+  }
 
-    public void setGame(Game game) {
-        this.game = game;
-    }
+  public void setGame(Game game) {
+    this.game = game;
+  }
 
-    public int getPeriod() {
-        return period;
-    }
+  public int getPeriod() {
+    return period;
+  }
 
-    public void setPeriod(int period) {
-        this.period = period;
-    }
+  public void setPeriod(int period) {
+    this.period = period;
+  }
 
-    public PeriodEvent getEvent() {
-        return event;
-    }
+  public PeriodEvent getEvent() {
+    return event;
+  }
 
-    public void setEvent(PeriodEvent event) {
-        this.event = event;
-    }
+  public void setEvent(PeriodEvent event) {
+    this.event = event;
+  }
 
-    @Override
-    public String getCollapseKey() {
-        return game.getHomeTeam() +
-               game.getVisitorTeam() +
-               String.valueOf(game.getDate());
-    }
+  @Override
+  public String getCollapseKey() {
+    return game.getHomeTeam() +
+           game.getVisitorTeam() +
+           String.valueOf(game.getDate());
+  }
 }

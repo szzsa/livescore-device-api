@@ -11,14 +11,14 @@ import ro.szzsa.livescore.api.device.client.handler.TeamsUpdateHandler;
  */
 public interface DeviceApiClient {
 
-    void getGameDetails(String gameId,
-                        GameDetailsUpdateHandler gameDetailsHandler)
-        throws DeviceApiException;
+  void getGameDetails(String gameId,
+                      GameDetailsUpdateHandler gameDetailsHandler)
+      throws DeviceApiException;
 
-    void getStats(TeamsUpdateHandler teamsHandler,
-                  GamesUpdateHandler gamesHandler,
-                  StandingsUpdateHandler standingsHandler)
-        throws DeviceApiException;
+  void getStats(TeamsUpdateHandler teamsHandler,
+                GamesUpdateHandler gamesHandler,
+                StandingsUpdateHandler standingsHandler)
+      throws DeviceApiException;
 
-    boolean shouldUpdate(int appVersion) throws DeviceApiException;
+  boolean shouldUpdate(int appVersion) throws DeviceApiException;
 }
