@@ -9,14 +9,22 @@ import ro.szzsa.livescore.api.device.protocol.response.VersionSyncResponse;
 /**
  * Device REST API endpoints exposed by the server and used by devices.
  */
-public enum DeviceApiEndpoints {
+public final class DeviceApiEndpoints {
+
+  public static final String DEVICE_API_ROOT_PATH = "/api/device/v1";
+
+  public static final String GET_STATS_PATH = "/stats/get";
+
+  public static final String SYNC_VERSION_PATH = "/version/sync";
+
+  public static final String GET_GAME_DETAILS_PATH = "/game/sync";
 
   /**
    * Endpoint for stats synchronization.
    *
    * @see StatsSyncResponse
    */
-  SYNC_STATS("/stats"),
+  public static final String GET_STATS_URL = DEVICE_API_ROOT_PATH + GET_STATS_PATH;
 
   /**
    * Endpoint for version synchronization.
@@ -24,7 +32,7 @@ public enum DeviceApiEndpoints {
    * @see VersionSyncRequest
    * @see VersionSyncResponse
    */
-  SYNC_VERSION("/version"),
+  public static final String SYNC_VERSION_URL = DEVICE_API_ROOT_PATH + SYNC_VERSION_PATH;
 
   /**
    * Endpoint for game details retrieval.
@@ -32,24 +40,9 @@ public enum DeviceApiEndpoints {
    * @see GameDetailsRequest
    * @see GameDetailsResponse
    */
-  GET_GAME_DETAILS("/game");
+  public static final String GET_GAME_DETAILS_URL = DEVICE_API_ROOT_PATH + GET_GAME_DETAILS_PATH;
 
-  private final String path;
-
-  DeviceApiEndpoints(String path) {
-    this.path = path;
-  }
-
-  public String getPath() {
-    return path;
-  }
-
-  public String getUrl() {
-    return Constants.DEVICE_API_ROOT_PATH + path;
-  }
-
-  public static class Constants {
-
-    public static final String DEVICE_API_ROOT_PATH = "/api/device/v1";
+  private DeviceApiEndpoints() {
+    throw new UnsupportedOperationException();
   }
 }

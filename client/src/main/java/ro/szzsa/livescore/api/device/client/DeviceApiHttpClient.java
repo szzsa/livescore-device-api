@@ -29,7 +29,7 @@ public class DeviceApiHttpClient implements DeviceApiClient {
       GameDetailsRequest requestPayload = new GameDetailsRequest();
       requestPayload.setGameId(gameId);
       String message = converter.toString(requestPayload);
-      Request request = new Request(DeviceApiEndpoints.GET_GAME_DETAILS.getUrl(), message);
+      Request request = new Request(DeviceApiEndpoints.GET_GAME_DETAILS_URL, message);
 
       String response = connector.sendRequest(request);
 
@@ -46,7 +46,7 @@ public class DeviceApiHttpClient implements DeviceApiClient {
                        StandingsUpdateHandler standingsHandler)
     throws DeviceApiException {
     try {
-      Request request = new Request(DeviceApiEndpoints.SYNC_STATS.getUrl());
+      Request request = new Request(DeviceApiEndpoints.GET_STATS_URL);
 
       String response = connector.sendRequest(request);
 
@@ -66,7 +66,7 @@ public class DeviceApiHttpClient implements DeviceApiClient {
       VersionSyncRequest requestPayload = new VersionSyncRequest();
       requestPayload.setAppVersion(appVersion);
       String message = converter.toString(requestPayload);
-      Request request = new Request(DeviceApiEndpoints.SYNC_VERSION.getUrl(), message);
+      Request request = new Request(DeviceApiEndpoints.SYNC_VERSION_URL, message);
 
       String response = connector.sendRequest(request);
 
