@@ -40,11 +40,4 @@ public class PeriodEventNotification extends Notification {
   public void setEvent(PeriodEvent event) {
     this.event = event;
   }
-
-  @Override
-  public String getCollapseKey() {
-    return game.getHomeTeam() +
-      game.getVisitorTeam() +
-      String.valueOf(game.getDate());
-  }
 }

@@ -19,11 +19,4 @@ public class PenaltyNotification extends Notification {
   public void setPenalty(Penalty penalty) {
     this.penalty = penalty;
   }
-
-  @Override
-  public String getCollapseKey() {
-    return penalty.getGame().getHomeTeam() +
-      penalty.getGame().getVisitorTeam() +
-      String.valueOf(penalty.getGame().getDate());
-  }
 }

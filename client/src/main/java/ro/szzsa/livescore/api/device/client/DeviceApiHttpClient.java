@@ -35,7 +35,7 @@ public class DeviceApiHttpClient implements DeviceApiClient {
 
       GameDetailsResponse responsePayload = converter.fromString(response, GameDetailsResponse.class);
 
-      gameDetailsHandler.handleGameDetailsUpdate(responsePayload.getGameDetails());
+      gameDetailsHandler.handleGameDetailsUpdate(responsePayload.getGame());
     } catch (Exception e) {
       throw new DeviceApiException(e);
     }

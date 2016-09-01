@@ -1,16 +1,16 @@
 package ro.szzsa.livescore.api.device.protocol.response;
 
-import ro.szzsa.livescore.model.GameDetails;
+import ro.szzsa.livescore.model.Game;
 
 public class GameDetailsResponse {
 
-  private GameDetails gameDetails;
+  private Game game;
 
-  public GameDetails getGameDetails() {
-    return gameDetails;
+  public Game getGame() {
+    return game;
   }
 
-  public void setGameDetails(GameDetails gameDetails) {
-    this.gameDetails = gameDetails;
+  public void setGame(Game game) {
+    this.game = game;
   }
 }
