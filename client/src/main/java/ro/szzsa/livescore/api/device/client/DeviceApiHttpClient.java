@@ -44,7 +44,7 @@ public class DeviceApiHttpClient implements DeviceApiClient {
   @Override
   public void getStats(TeamsUpdateHandler teamsHandler, GamesUpdateHandler gamesHandler,
                        StandingsUpdateHandler standingsHandler)
-    throws DeviceApiException {
+      throws DeviceApiException {
     try {
       Request request = new Request(DeviceApiEndpoints.GET_STATS_URL);
 

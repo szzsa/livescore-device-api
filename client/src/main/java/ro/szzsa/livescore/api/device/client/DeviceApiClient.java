@@ -13,12 +13,12 @@ public interface DeviceApiClient {
 
   void getGameDetails(String gameId,
                       GameDetailsUpdateHandler gameDetailsHandler)
-    throws DeviceApiException;
+      throws DeviceApiException;
 
   void getStats(TeamsUpdateHandler teamsHandler,
                 GamesUpdateHandler gamesHandler,
                 StandingsUpdateHandler standingsHandler)
-    throws DeviceApiException;
+      throws DeviceApiException;
 
   boolean shouldUpdate(int appVersion) throws DeviceApiException;
 }

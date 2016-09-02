@@ -44,14 +44,14 @@ buildscript {
     }
   }
   dependencies {
-    classpath 'net.researchgate:gradle-release:2.4.0'
+    classpath 'net.researchgate:gradle-release:' + releasePluginVersion
   }
 }
 
 apply plugin: 'net.researchgate.release'
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '3.0'
+  gradleVersion = gradleWrapperVersion
   distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
 }
 
