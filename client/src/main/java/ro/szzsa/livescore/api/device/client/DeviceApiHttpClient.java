@@ -19,9 +19,13 @@ import ro.szzsa.utils.connector.Request;
 
 public class DeviceApiHttpClient implements DeviceApiClient {
 
+  private final String serverUrl;
   private Connector connector = Connectors.createHttpConnector();
-
   private Converter converter = Converters.createJsonConverter();
+
+  public DeviceApiHttpClient(String serverUrl) {
+    this.serverUrl = serverUrl;
+  }
 
   @Override
   public void getGameDetails(String gameId, GameDetailsUpdateHandler gameDetailsHandler) throws DeviceApiException {
@@ -29,7 +33,7 @@ public class DeviceApiHttpClient implements DeviceApiClient {
       GameDetailsRequest requestPayload = new GameDetailsRequest();
       requestPayload.setGameId(gameId);
       String message = converter.toString(requestPayload);
-      Request request = new Request(DeviceApiEndpoints.GET_GAME_DETAILS_URL, message);
+      Request request = new Request(serverUrl + DeviceApiEndpoints.GET_GAME_DETAILS_URL, message);
 
       String response = connector.sendRequest(request);
 
@@ -46,7 +50,7 @@ public class DeviceApiHttpClient implements DeviceApiClient {
                        StandingsUpdateHandler standingsHandler)
       throws DeviceApiException {
     try {
-      Request request = new Request(DeviceApiEndpoints.GET_STATS_URL);
+      Request request = new Request(serverUrl + DeviceApiEndpoints.GET_STATS_URL);
 
       String response = connector.sendRequest(request);
 
@@ -66,7 +70,7 @@ public class DeviceApiHttpClient implements DeviceApiClient {
       VersionSyncRequest requestPayload = new VersionSyncRequest();
       requestPayload.setAppVersion(appVersion);
       String message = converter.toString(requestPayload);
-      Request request = new Request(DeviceApiEndpoints.SYNC_VERSION_URL, message);
+      Request request = new Request(serverUrl + DeviceApiEndpoints.SYNC_VERSION_URL, message);
 
       String response = connector.sendRequest(request);
 
