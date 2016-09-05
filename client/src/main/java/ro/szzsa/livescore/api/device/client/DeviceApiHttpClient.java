@@ -20,8 +20,10 @@ import ro.szzsa.utils.connector.Request;
 public class DeviceApiHttpClient implements DeviceApiClient {
 
   private final String serverUrl;
-  private Connector connector = Connectors.createHttpConnector();
-  private Converter converter = Converters.createJsonConverter();
+
+  private final Connector connector = Connectors.createHttpConnector();
+
+  private final Converter converter = Converters.createJsonConverter();
 
   public DeviceApiHttpClient(String serverUrl) {
     this.serverUrl = serverUrl;
@@ -48,7 +50,7 @@ public class DeviceApiHttpClient implements DeviceApiClient {
   @Override
   public void getStats(TeamsUpdateHandler teamsHandler, GamesUpdateHandler gamesHandler,
                        StandingsUpdateHandler standingsHandler)
-      throws DeviceApiException {
+    throws DeviceApiException {
     try {
       Request request = new Request(serverUrl + DeviceApiEndpoints.GET_STATS_URL);
 
