@@ -1,7 +1,5 @@
 package ro.szzsa.livescore.api.device.client;
 
-import ro.szzsa.livescore.api.device.client.converter.Converter;
-import ro.szzsa.livescore.api.device.client.converter.Converters;
 import ro.szzsa.livescore.api.device.client.exception.DeviceApiException;
 import ro.szzsa.livescore.api.device.client.handler.GameDetailsUpdateHandler;
 import ro.szzsa.livescore.api.device.client.handler.GamesUpdateHandler;
@@ -16,17 +14,21 @@ import ro.szzsa.livescore.api.device.protocol.response.VersionSyncResponse;
 import ro.szzsa.utils.connector.Connector;
 import ro.szzsa.utils.connector.Connectors;
 import ro.szzsa.utils.connector.Request;
+import ro.szzsa.utils.converter.Converter;
+import ro.szzsa.utils.converter.Converters;
 
 public class DeviceApiHttpClient implements DeviceApiClient {
 
   private final String serverUrl;
 
-  private final Connector connector = Connectors.createHttpConnector();
+  private final Connector connector;
 
-  private final Converter converter = Converters.createJsonConverter();
+  private final Converter converter;
 
   public DeviceApiHttpClient(String serverUrl) {
     this.serverUrl = serverUrl;
+    connector = Connectors.createDefaultHttpConnector();
+    converter = Converters.createJsonConverter();
   }
 
   @Override
@@ -50,7 +52,7 @@ public class DeviceApiHttpClient implements DeviceApiClient {
   @Override
   public void getStats(TeamsUpdateHandler teamsHandler, GamesUpdateHandler gamesHandler,
                        StandingsUpdateHandler standingsHandler)
-    throws DeviceApiException {
+      throws DeviceApiException {
     try {
       Request request = new Request(serverUrl + DeviceApiEndpoints.GET_STATS_URL);
 

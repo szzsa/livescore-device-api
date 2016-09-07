@@ -1,6 +1,6 @@
 dependencies {
   compile project(':livescore-device-api')
   compile group: 'ro.szzsa.utils', name: 'connector', version: connectorVersion
-  compile group: 'com.google.code.gson', name: 'gson', version: gsonVersion
+  compile group: 'ro.szzsa.utils', name: 'converter', version: converterVersion
   testCompile group: 'junit', name: 'junit', version: junitVersion
 }
