@@ -1,10 +1,9 @@
 package ro.szzsa.livescore.api.device.client;
 
 import ro.szzsa.livescore.api.device.client.exception.DeviceApiException;
-import ro.szzsa.livescore.api.device.client.handler.GameDetailsUpdateHandler;
-import ro.szzsa.livescore.api.device.client.handler.GamesUpdateHandler;
-import ro.szzsa.livescore.api.device.client.handler.StandingsUpdateHandler;
-import ro.szzsa.livescore.api.device.client.handler.TeamsUpdateHandler;
+import ro.szzsa.livescore.api.device.client.handler.GameUpdater;
+import ro.szzsa.livescore.api.device.client.handler.StatsUpdater;
+import ro.szzsa.livescore.api.device.client.handler.VersionInfoHandler;
 import ro.szzsa.livescore.api.device.protocol.DeviceApiEndpoints;
 import ro.szzsa.livescore.api.device.protocol.request.GameDetailsRequest;
 import ro.szzsa.livescore.api.device.protocol.request.VersionSyncRequest;
@@ -32,7 +31,7 @@ public class DeviceApiHttpClient implements DeviceApiClient {
   }
 
   @Override
-  public void getGameDetails(String gameId, GameDetailsUpdateHandler gameDetailsHandler) throws DeviceApiException {
+  public void syncGame(String gameId, GameUpdater gameUpdater) throws DeviceApiException {
     try {
       GameDetailsRequest requestPayload = new GameDetailsRequest();
       requestPayload.setGameId(gameId);
@@ -43,16 +42,15 @@ public class DeviceApiHttpClient implements DeviceApiClient {
 
       GameDetailsResponse responsePayload = converter.fromString(response, GameDetailsResponse.class);
 
-      gameDetailsHandler.handleGameDetailsUpdate(responsePayload.getGame());
+      gameUpdater.updateGame(responsePayload.getGame());
     } catch (Exception e) {
       throw new DeviceApiException(e);
     }
   }
 
   @Override
-  public void getStats(TeamsUpdateHandler teamsHandler, GamesUpdateHandler gamesHandler,
-                       StandingsUpdateHandler standingsHandler)
-      throws DeviceApiException {
+  public void getStats(StatsUpdater statsUpdater)
+    throws DeviceApiException {
     try {
       Request request = new Request(serverUrl + DeviceApiEndpoints.GET_STATS_URL);
 
@@ -60,19 +58,19 @@ public class DeviceApiHttpClient implements DeviceApiClient {
 
       StatsSyncResponse responsePayload = converter.fromString(response, StatsSyncResponse.class);
 
-      teamsHandler.handleTeamsUpdate(responsePayload.getTeams());
-      gamesHandler.handleGamesUpdate(responsePayload.getGames());
-      standingsHandler.handleStandingsUpdate(responsePayload.getStandings());
+      statsUpdater.updateTeams(responsePayload.getTeams());
+      statsUpdater.updateGames(responsePayload.getGames());
+      statsUpdater.updateStandings(responsePayload.getStandings());
     } catch (Exception e) {
       throw new DeviceApiException(e);
     }
   }
 
   @Override
-  public boolean shouldUpdate(int appVersion) throws DeviceApiException {
+  public void syncVersion(int currentVersion, VersionInfoHandler handler) throws DeviceApiException {
     try {
       VersionSyncRequest requestPayload = new VersionSyncRequest();
-      requestPayload.setAppVersion(appVersion);
+      requestPayload.setAppVersion(currentVersion);
       String message = converter.toString(requestPayload);
       Request request = new Request(serverUrl + DeviceApiEndpoints.SYNC_VERSION_URL, message);
 
@@ -80,7 +78,9 @@ public class DeviceApiHttpClient implements DeviceApiClient {
 
       VersionSyncResponse responsePayload = converter.fromString(response, VersionSyncResponse.class);
 
-      return responsePayload.isUpdateApp();
+      if (responsePayload.isUpdateApp()) {
+        handler.updateApplication();
+      }
     } catch (Exception e) {
       throw new DeviceApiException(e);
     }
