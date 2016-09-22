@@ -10,6 +10,7 @@ import ro.szzsa.utils.connector.log.Logger;
 public final class DeviceApiHttpClientBuilder {
 
   private final String serverUrl;
+
   private HttpConnectorBuilder connectorBuilder;
 
   public DeviceApiHttpClientBuilder(String serverUrl) {
