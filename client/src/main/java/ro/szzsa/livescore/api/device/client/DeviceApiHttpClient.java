@@ -30,6 +30,12 @@ public class DeviceApiHttpClient implements DeviceApiClient {
     converter = Converters.createJsonConverter();
   }
 
+  public DeviceApiHttpClient(String serverUrl, Connector connector) {
+    this.serverUrl = serverUrl;
+    this.connector = connector;
+    converter = Converters.createJsonConverter();
+  }
+
   @Override
   public void syncGame(String gameId, GameUpdater gameUpdater) throws DeviceApiException {
     try {

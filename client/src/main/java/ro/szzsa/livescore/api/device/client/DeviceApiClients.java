@@ -9,7 +9,11 @@ public final class DeviceApiClients {
     throw new UnsupportedOperationException();
   }
 
-  public static DeviceApiClient createHttpClient(String serverUrl) {
+  public static DeviceApiClient createDefaultHttpClient(String serverUrl) {
     return new DeviceApiHttpClient(serverUrl);
+  }
+
+  public static DeviceApiHttpClientBuilder createCustomHttpClient(String serverUrl) {
+    return new DeviceApiHttpClientBuilder(serverUrl);
   }
 }
