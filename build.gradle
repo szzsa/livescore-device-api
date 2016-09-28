@@ -1,10 +1,5 @@
 allprojects {
-  apply plugin: 'java'
-
   group 'ro.szzsa.livescore'
-
-  sourceCompatibility = 1.8
-  targetCompatibility = 1.8
 
   repositories {
     mavenCentral()
@@ -50,8 +45,15 @@ buildscript {
 
 apply plugin: 'net.researchgate.release'
 
+task clean(type: Delete) {
+  delete rootProject.buildDir
+}
+
+task build() {
+}
+
 task wrapper(type: Wrapper) {
-  gradleVersion = gradleWrapperVersion
+  gradleVersion = "3.1"
   distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
 }
 

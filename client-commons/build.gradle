@@ -1,0 +1,11 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+dependencies {
+  compile project(':livescore-device-api')
+  compile group: 'ro.szzsa.utils', name: 'connector-commons', version: connectorVersion
+  compile group: 'ro.szzsa.utils', name: 'converter', version: converterVersion
+  testCompile group: 'junit', name: 'junit', version: junitVersion
+}
