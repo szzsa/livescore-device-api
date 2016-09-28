@@ -1,6 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="ro.szzsa.livescore.api.device.client">
+<manifest package="ro.szzsa.livescore.api.device.client">
 
-  <application android:label="livescore-device-api-android-client"/>
+  <application/>
 
 </manifest>
