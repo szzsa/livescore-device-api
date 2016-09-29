@@ -39,5 +39,5 @@ android {
 dependencies {
   compile project(':livescore-device-api-client-commons')
   compile 'ro.szzsa.utils:httpconnector-android:1.0'
-  testCompile group: 'junit', name: 'junit', version: junitVersion
+  testCompile 'junit:junit:4.12'
 }

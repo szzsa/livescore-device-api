@@ -5,7 +5,7 @@ targetCompatibility = 1.7
 
 dependencies {
   compile project(':livescore-device-api')
-  compile group: 'ro.szzsa.utils', name: 'connector-commons', version: connectorVersion
-  compile group: 'ro.szzsa.utils', name: 'converter', version: converterVersion
-  testCompile group: 'junit', name: 'junit', version: junitVersion
+  compile 'ro.szzsa.utils:connector-commons:1.0'
+  compile 'ro.szzsa.utils:converter:1.0'
+  testCompile 'junit:junit:4.12'
 }

@@ -4,6 +4,6 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 dependencies {
-  compile group: 'ro.szzsa.livescore', name: 'livescore-model', version: livescoreModelVersion
-  testCompile group: 'junit', name: 'junit', version: junitVersion
+  compile 'ro.szzsa.livescore:livescore-model:1.0'
+  testCompile 'junit:junit:4.12'
 }
