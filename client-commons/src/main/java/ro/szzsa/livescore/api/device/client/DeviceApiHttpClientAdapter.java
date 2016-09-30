@@ -29,7 +29,7 @@ public abstract class DeviceApiHttpClientAdapter implements DeviceApiClient {
   }
 
   @Override
-  public void syncGame(String gameId, GameUpdater gameUpdater) throws DeviceApiException {
+  public void syncGame(long gameId, GameUpdater gameUpdater) throws DeviceApiException {
     try {
       GameDetailsRequest requestPayload = new GameDetailsRequest();
       requestPayload.setGameId(gameId);

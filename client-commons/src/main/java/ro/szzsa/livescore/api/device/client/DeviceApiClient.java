@@ -10,7 +10,7 @@ import ro.szzsa.livescore.api.device.client.handler.VersionInfoHandler;
  */
 public interface DeviceApiClient {
 
-  void syncGame(String gameId, GameUpdater gameUpdater) throws DeviceApiException;
+  void syncGame(long gameId, GameUpdater gameUpdater) throws DeviceApiException;
 
   void getStats(StatsUpdater statsUpdater) throws DeviceApiException;
 
