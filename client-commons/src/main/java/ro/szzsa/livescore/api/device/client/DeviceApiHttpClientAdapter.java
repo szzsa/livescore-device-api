@@ -34,7 +34,7 @@ public abstract class DeviceApiHttpClientAdapter implements DeviceApiClient {
       GameSyncRequest requestPayload = new GameSyncRequest();
       requestPayload.setGameId(gameId);
       String message = converter.toString(requestPayload);
-      Request request = new Request(serverUrl + DeviceApiEndpoints.GET_GAME_DETAILS_URL, message);
+      Request request = new Request(serverUrl + DeviceApiEndpoints.SYNC_GAME_URL, message);
 
       String response = connector.sendRequest(request);
 
@@ -50,7 +50,7 @@ public abstract class DeviceApiHttpClientAdapter implements DeviceApiClient {
   public void syncStats(StatsUpdater statsUpdater)
     throws DeviceApiException {
     try {
-      Request request = new Request(serverUrl + DeviceApiEndpoints.GET_STATS_URL);
+      Request request = new Request(serverUrl + DeviceApiEndpoints.SYNC_STATS_URL);
 
       String response = connector.sendRequest(request);
 

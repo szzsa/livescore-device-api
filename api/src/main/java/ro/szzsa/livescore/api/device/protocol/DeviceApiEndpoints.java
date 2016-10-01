@@ -26,7 +26,7 @@ public final class DeviceApiEndpoints {
    *
    * @see StatsSyncResponse
    */
-  public static final String GET_STATS_URL = DEVICE_API_V1_ROOT_PATH + SYNC_STATS_PATH;
+  public static final String SYNC_STATS_URL = DEVICE_API_V1_ROOT_PATH + SYNC_STATS_PATH;
 
   /**
    * Endpoint for version synchronization.
@@ -42,7 +42,7 @@ public final class DeviceApiEndpoints {
    * @see GameSyncRequest
    * @see GameSyncResponse
    */
-  public static final String GET_GAME_DETAILS_URL = DEVICE_API_V1_ROOT_PATH + SYNC_GAME_PATH;
+  public static final String SYNC_GAME_URL = DEVICE_API_V1_ROOT_PATH + SYNC_GAME_PATH;
 
   private DeviceApiEndpoints() {
     throw new UnsupportedOperationException();
