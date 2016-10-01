@@ -2,7 +2,7 @@ package ro.szzsa.livescore.api.device.protocol.response;
 
 import ro.szzsa.livescore.model.Game;
 
-public class GameDetailsResponse {
+public class GameSyncResponse {
 
   private Game game;
 

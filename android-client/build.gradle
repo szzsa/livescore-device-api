@@ -38,6 +38,8 @@ android {
 
 dependencies {
   compile project(':livescore-device-api-client-commons')
-  compile 'ro.szzsa.utils:httpconnector-android:1.0'
+  compile('ro.szzsa.utils:httpconnector-android:1.0@aar') {
+    transitive = true
+  }
   testCompile 'junit:junit:4.12'
 }

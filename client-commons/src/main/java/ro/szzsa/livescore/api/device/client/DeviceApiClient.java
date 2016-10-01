@@ -12,7 +12,7 @@ public interface DeviceApiClient {
 
   void syncGame(long gameId, GameUpdater gameUpdater) throws DeviceApiException;
 
-  void getStats(StatsUpdater statsUpdater) throws DeviceApiException;
+  void syncStats(StatsUpdater statsUpdater) throws DeviceApiException;
 
   void syncVersion(int currentVersion, VersionInfoHandler handler) throws DeviceApiException;
 }

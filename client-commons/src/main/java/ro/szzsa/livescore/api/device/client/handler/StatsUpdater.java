@@ -3,7 +3,7 @@ package ro.szzsa.livescore.api.device.client.handler;
 import java.util.List;
 
 import ro.szzsa.livescore.model.Game;
-import ro.szzsa.livescore.model.Standings;
+import ro.szzsa.livescore.model.LeaguePhase;
 import ro.szzsa.livescore.model.Team;
 
 /**
@@ -15,5 +15,5 @@ public interface StatsUpdater {
 
   void updateGames(List<Game> games);
 
-  void updateStandings(List<Standings> standingsList);
+  void updateLeaguePhases(List<LeaguePhase> standingsList);
 }

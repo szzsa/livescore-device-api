@@ -5,9 +5,9 @@ import ro.szzsa.livescore.api.device.client.handler.GameUpdater;
 import ro.szzsa.livescore.api.device.client.handler.StatsUpdater;
 import ro.szzsa.livescore.api.device.client.handler.VersionInfoHandler;
 import ro.szzsa.livescore.api.device.protocol.DeviceApiEndpoints;
-import ro.szzsa.livescore.api.device.protocol.request.GameDetailsRequest;
+import ro.szzsa.livescore.api.device.protocol.request.GameSyncRequest;
 import ro.szzsa.livescore.api.device.protocol.request.VersionSyncRequest;
-import ro.szzsa.livescore.api.device.protocol.response.GameDetailsResponse;
+import ro.szzsa.livescore.api.device.protocol.response.GameSyncResponse;
 import ro.szzsa.livescore.api.device.protocol.response.StatsSyncResponse;
 import ro.szzsa.livescore.api.device.protocol.response.VersionSyncResponse;
 import ro.szzsa.utils.connector.Connector;
@@ -31,14 +31,14 @@ public abstract class DeviceApiHttpClientAdapter implements DeviceApiClient {
   @Override
   public void syncGame(long gameId, GameUpdater gameUpdater) throws DeviceApiException {
     try {
-      GameDetailsRequest requestPayload = new GameDetailsRequest();
+      GameSyncRequest requestPayload = new GameSyncRequest();
       requestPayload.setGameId(gameId);
       String message = converter.toString(requestPayload);
       Request request = new Request(serverUrl + DeviceApiEndpoints.GET_GAME_DETAILS_URL, message);
 
       String response = connector.sendRequest(request);
 
-      GameDetailsResponse responsePayload = converter.fromString(response, GameDetailsResponse.class);
+      GameSyncResponse responsePayload = converter.fromString(response, GameSyncResponse.class);
 
       gameUpdater.updateGame(responsePayload.getGame());
     } catch (Exception e) {
@@ -47,7 +47,7 @@ public abstract class DeviceApiHttpClientAdapter implements DeviceApiClient {
   }
 
   @Override
-  public void getStats(StatsUpdater statsUpdater)
+  public void syncStats(StatsUpdater statsUpdater)
     throws DeviceApiException {
     try {
       Request request = new Request(serverUrl + DeviceApiEndpoints.GET_STATS_URL);
@@ -58,7 +58,7 @@ public abstract class DeviceApiHttpClientAdapter implements DeviceApiClient {
 
       statsUpdater.updateTeams(responsePayload.getTeams());
       statsUpdater.updateGames(responsePayload.getGames());
-      statsUpdater.updateStandings(responsePayload.getStandings());
+      statsUpdater.updateLeaguePhases(responsePayload.getLeaguePhases());
     } catch (Exception e) {
       throw new DeviceApiException(e);
     }

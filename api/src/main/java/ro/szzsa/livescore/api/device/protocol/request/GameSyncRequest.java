@@ -1,6 +1,6 @@
 package ro.szzsa.livescore.api.device.protocol.request;
 
-public class GameDetailsRequest {
+public class GameSyncRequest {
 
   private long gameId;
 

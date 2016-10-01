@@ -3,7 +3,7 @@ package ro.szzsa.livescore.api.device.protocol.response;
 import java.util.List;
 
 import ro.szzsa.livescore.model.Game;
-import ro.szzsa.livescore.model.Standings;
+import ro.szzsa.livescore.model.LeaguePhase;
 import ro.szzsa.livescore.model.Team;
 
 public class StatsSyncResponse {
@@ -12,7 +12,7 @@ public class StatsSyncResponse {
 
   private List<Game> games;
 
-  private List<Standings> standings;
+  private List<LeaguePhase> leaguePhases;
 
   public List<Team> getTeams() {
     return teams;
@@ -30,11 +30,11 @@ public class StatsSyncResponse {
     this.games = games;
   }
 
-  public List<Standings> getStandings() {
-    return standings;
+  public List<LeaguePhase> getLeaguePhases() {
+    return leaguePhases;
   }
 
-  public void setStandings(List<Standings> standings) {
-    this.standings = standings;
+  public void setLeaguePhases(List<LeaguePhase> leaguePhases) {
+    this.leaguePhases = leaguePhases;
   }
 }
