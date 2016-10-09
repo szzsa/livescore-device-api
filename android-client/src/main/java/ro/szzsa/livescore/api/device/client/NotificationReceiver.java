@@ -27,9 +27,9 @@ public abstract class NotificationReceiver {
 
   protected abstract void handleError(Exception e);
 
-  protected abstract void onNewGoal(Goal goal);
+  protected abstract void onNewGoal(Game game, Goal goal);
 
-  protected abstract void onNewPenalty(Penalty penalty);
+  protected abstract void onNewPenalty(Game game, Penalty penalty);
 
   protected abstract void onTimeChange(Game game);
 
@@ -40,10 +40,10 @@ public abstract class NotificationReceiver {
       Game game = Converters.createJsonConverter().fromString(decompress(message), Game.class);
       Game oldGame = getOldGame(game.getId());
       if (areGoalsChanged(oldGame, game)) {
-        onNewGoal(getLatestGoal(game));
+        onNewGoal(game, getLatestGoal(game));
       }
       if (arePenaltiesChanged(oldGame, game)) {
-        onNewPenalty(getLatestPenalty(game));
+        onNewPenalty(game, getLatestPenalty(game));
       }
       if (isTimeChanged(oldGame, game)) {
         onTimeChange(game);
