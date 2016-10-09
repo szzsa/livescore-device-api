@@ -1,17 +1,29 @@
 package ro.szzsa.livescore.api.device.protocol.notification;
 
 /**
- * Marker interface for notification message payload sent by the server.
+ *
  */
-public abstract class Notification {
+public class Notification {
 
-  private final NotificationType type;
+  public static final String STATS_TOPIC_NAME = "stats";
 
-  protected Notification(NotificationType type) {
-    this.type = type;
+  private String to;
+
+  private Data data;
+
+  public String getTo() {
+    return to;
   }
 
-  public NotificationType getType() {
-    return type;
+  public void setTo(String to) {
+    this.to = to;
+  }
+
+  public Data getData() {
+    return data;
+  }
+
+  public void setData(Data data) {
+    this.data = data;
   }
 }

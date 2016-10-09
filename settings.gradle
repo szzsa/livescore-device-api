@@ -7,3 +7,6 @@ include 'client'
 findProject(':client')?.name = 'livescore-device-api-client'
 include 'android-client'
 findProject(':android-client')?.name = 'livescore-device-api-android-client'
+include 'server'
+findProject(':server')?.name = 'livescore-device-api-server'
+
