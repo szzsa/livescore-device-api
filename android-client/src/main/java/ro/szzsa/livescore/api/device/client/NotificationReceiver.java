@@ -35,7 +35,7 @@ public abstract class NotificationReceiver {
 
   protected abstract void onStatusChange(Game game);
 
-  protected void processNotification(String message) {
+  public void processNotification(String message) {
     try {
       Game game = Converters.createJsonConverter().fromString(decompress(message), Game.class);
       Game oldGame = getOldGame(game.getId());
