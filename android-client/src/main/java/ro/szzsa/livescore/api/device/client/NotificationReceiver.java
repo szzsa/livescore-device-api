@@ -21,7 +21,7 @@ public abstract class NotificationReceiver {
 
   protected static final String MESSAGE_KEY = "message";
 
-  protected abstract Game getOldGame();
+  protected abstract Game getOldGame(long gameId);
 
   protected abstract void saveNewGame(Game game);
 
@@ -37,8 +37,8 @@ public abstract class NotificationReceiver {
 
   protected void processNotification(String message) {
     try {
-      Game oldGame = getOldGame();
       Game game = Converters.createJsonConverter().fromString(decompress(message), Game.class);
+      Game oldGame = getOldGame(game.getId());
       if (areGoalsChanged(oldGame, game)) {
         onNewGoal(getLatestGoal(game));
       }
