@@ -103,7 +103,7 @@ public abstract class NotificationReceiver {
   }
 
   private boolean isStatusChanged(Game oldGame, Game game) {
-    return !oldGame.getStatus().equals(game.getStatus());
+    return oldGame == null || oldGame.getStatus() == null || !oldGame.getStatus().equals(game.getStatus());
   }
 
   private Goal getLatestGoal(Game game) {
