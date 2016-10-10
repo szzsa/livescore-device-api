@@ -74,7 +74,7 @@ public abstract class NotificationReceiver {
 
   private boolean areGoalsChanged(Game oldGame, Game game) {
     if (oldGame == null) {
-      return true;
+      return game.getGoals() != null && game.getGoals().size() > 0;
     }
     if (oldGame.getGoals() == null) {
       return game.getGoals() != null && game.getGoals().size() > 0;
@@ -84,7 +84,7 @@ public abstract class NotificationReceiver {
 
   private boolean arePenaltiesChanged(Game oldGame, Game game) {
     if (oldGame == null) {
-      return true;
+      return game.getPenalties() != null && game.getPenalties().size() > 0;
     }
     if (oldGame.getPenalties() == null) {
       return game.getPenalties() != null && game.getPenalties().size() > 0;
@@ -94,7 +94,7 @@ public abstract class NotificationReceiver {
 
   private boolean isTimeChanged(Game oldGame, Game game) {
     if (oldGame == null) {
-      return true;
+      return game.getTime() != null && game.getTime().length() > 0;
     }
     if (oldGame.getTime() == null) {
       return game.getTime() != null && game.getTime().length() > 0;
