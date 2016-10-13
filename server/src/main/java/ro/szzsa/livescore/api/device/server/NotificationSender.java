@@ -27,8 +27,9 @@ public class NotificationSender {
       notification.setTo("/topics/" + Notification.STATS_TOPIC_NAME);
       notification.setData(new Data());
       notification.getData().setMessage(compress(converter.toString(game)));
+      notification.setCollapse_key(String.valueOf(game.getId()));
       new HttpConnectorBuilder(apiKey).build().sendRequest(
-          new Request(FCM_SEND_URL, converter.toString(notification)));
+        new Request(FCM_SEND_URL, converter.toString(notification)));
     } catch (Exception e) {
       throw new NotificationException(e);
     }
