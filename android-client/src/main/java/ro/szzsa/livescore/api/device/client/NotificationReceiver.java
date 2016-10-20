@@ -40,7 +40,19 @@ public abstract class NotificationReceiver {
       Game game = Converters.createJsonConverter().fromString(decompress(message), Game.class);
       Game oldGame = getOldGame(game.getId());
       if (areGoalsChanged(oldGame, game)) {
-        onNewGoal(game, getLatestGoal(game));
+        Goal goal = getLatestGoal(game);
+        if (game.getHomeTeamId() == goal.getTeamId()) {
+          int numberOfGoals = getNumberOfGoals(game, game.getHomeTeamId());
+          if (game.getHomeTeamScore() == numberOfGoals - 1) {
+            game.setHomeTeamScore(numberOfGoals);
+          }
+        } else {
+          int numberOfGoals = getNumberOfGoals(game, game.getVisitorTeamId());
+          if (game.getVisitorTeamScore() == numberOfGoals - 1) {
+            game.setVisitorTeamScore(numberOfGoals);
+          }
+        }
+        onNewGoal(game, goal);
       }
       if (arePenaltiesChanged(oldGame, game)) {
         onNewPenalty(game, getLatestPenalty(game));
@@ -124,5 +136,15 @@ public abstract class NotificationReceiver {
       }
     });
     return game.getPenalties().get(0);
+  }
+
+  private int getNumberOfGoals(Game game, long teamId) {
+    int numberOfGoals = 0;
+    for (Goal goal : game.getGoals()) {
+      if (teamId == goal.getTeamId()) {
+        numberOfGoals++;
+      }
+    }
+    return numberOfGoals;
   }
 }
